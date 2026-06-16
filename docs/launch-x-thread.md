@@ -68,6 +68,36 @@ MIT. Take what's useful.
 
 ---
 
+## Reply-to-steipete drafts (philosophy, on its own merit — not a tag-beg)
+
+Post as a reply to one of his Gemini / AI-image posts. Media = the Desert Modernist
+Palm Springs poster (examples/mid-century-palm-springs-gallery-wall.png).
+
+**A — single reply (recommended):**
+> Spent weeks blaming the model for AI-slop output. It was my prompt.
+>
+> I'd stacked guardrails — "render zero text," forbidden motifs, locked palettes —
+> all scar tissue from a weaker model. Deleted every layer, wrote one
+> creative-director brief instead. First gen: this. ↓
+>
+> The model had it the whole time.
+
+**B — two-tweet, includes the link:**
+> 1/ Spent weeks blaming the model for slop. It was my prompt. I'd built a 6-layer
+> guardrail wall — zero-text rules, forbidden motifs, hardcoded palettes — scar
+> tissue from a weaker model. Output kept getting *worse*.
+>
+> 2/ Deleted all of it. One creative-director brief — product, palette, mood,
+> "render it legibly." First gen off the clean prompt ↓ [image]. Open-sourced the
+> whole thing: github.com/jschroederus/dropsmith
+
+**C — sharpest / most quotable:**
+> Your image prompt's guardrails are probably scar tissue.
+>
+> Every "don't render text / no badges / use these colors" rule was written for a
+> weaker model. On a current one they don't go neutral — they make output *worse*.
+> I deleted all of mine and the model finally did this ↓
+
 ## Notes
 - Do NOT @ steipete with a "fixes your skill" claim — his Gemini skill is the
   `gemini` CLI and never touches the Python aiohttp bug. That claim is false; using
