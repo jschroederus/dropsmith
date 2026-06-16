@@ -5,11 +5,26 @@ from __future__ import annotations
 import argparse
 import asyncio
 import json
+import os
 import re
 import sys
 from pathlib import Path
 
 from .generator import generate_drop
+
+
+def _load_dotenv(path: Path = Path(".env")) -> None:
+    """Load simple KEY=VALUE lines from a local .env, without overriding the
+    real environment. Stdlib-only — no python-dotenv dependency. Keeps the key
+    in a gitignored file instead of the shell history."""
+    if not path.is_file():
+        return
+    for line in path.read_text().splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, _, value = line.partition("=")
+        os.environ.setdefault(key.strip(), value.strip().strip("'\""))
 
 
 def _slug(text: str) -> str:
@@ -45,6 +60,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("-o", "--out", default="out", help="output directory (default: ./out)")
     parser.add_argument("--copy", default=None, help="exact hero text to bake into the design")
     args = parser.parse_args(argv)
+    _load_dotenv()
 
     try:
         return asyncio.run(_run(args.niche, Path(args.out), args.copy))

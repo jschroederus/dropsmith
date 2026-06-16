@@ -15,6 +15,20 @@ out/
   mid-century-palm-springs-gallery-wall.json   # { title, description, tags, suggested_price_usd }
 ```
 
+## Real output
+
+Unedited, straight from the model — one niche string each. The text is baked in,
+legible, and (where the niche gave none) invented: the invite below has a host
+family and an RSVP; the coffee kit has a tagline and an "est. 2023."
+
+| `mid-century palm springs gallery wall` | `vintage americana block party invitation` |
+|:---:|:---:|
+| ![Palm Springs desert modernist poster](examples/mid-century-palm-springs-gallery-wall.png) | ![Vintage 4th of July block party invitation](examples/vintage-americana-block-party-invitation.png) |
+| **`letterpress coffee roaster brand kit`** | **`coastal big sur travel poster`** |
+| ![Letterpress coffee roaster brand print](examples/letterpress-coffee-roaster-brand-kit.png) | ![Big Sur coastal travel poster](examples/coastal-big-sur-travel-poster.png) |
+
+More, with their listing JSON, in [`examples/`](examples/).
+
 ## Why
 
 Most "AI product" tools fight the model: zero-text rules, forbidden-motif walls,
