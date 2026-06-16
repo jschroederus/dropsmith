@@ -1,8 +1,9 @@
 # Dropsmith
 
-**Turn a niche into a listable digital product.** One command: a premium,
-text-baked design and ready-to-paste marketplace listing (title, description,
-tags, price). Bring your own Gemini key.
+**A product forge, not an image generator.** Plenty of tools make an image from a
+prompt. Dropsmith makes a *listable product*: one command turns a niche into a
+premium, text-baked design **and** the marketplace listing to sell it — title,
+description, 13 search tags, suggested price. Bring your own Gemini key.
 
 ```bash
 dropsmith "mid-century palm springs gallery wall"
@@ -77,6 +78,34 @@ Configurable via env (defaults shown):
 DROPSMITH_IMAGE_MODEL=gemini-3-pro-image-preview
 DROPSMITH_TEXT_MODEL=gemini-3.1-pro-preview
 ```
+
+## As an OpenClaw skill
+
+Dropsmith ships as an [OpenClaw](https://github.com/openclaw/openclaw) skill in
+[`skill/`](skill/) — drop it in your workspace and the agent can forge product
+drops on request:
+
+```bash
+cp -r skill ~/.openclaw/workspace/skills/dropsmith
+chmod +x ~/.openclaw/workspace/skills/dropsmith/scripts/dropsmith
+# then, in OpenClaw: "make me a drop for a mid-century palm springs gallery wall"
+```
+
+The skill calls `scripts/dropsmith`, which runs the tool in an isolated `uv` env
+(nothing installed globally) and needs `GEMINI_API_KEY` set. It's positioned as a
+product forge — the listing-and-design vertical the raw Gemini CLI doesn't cover.
+See [`skill/SKILL.md`](skill/SKILL.md).
+
+## The story
+
+[**The prompt was the disease**](docs/the-prompt-was-the-disease.md) — why the
+guardrails in your image prompt are probably scar tissue making output worse, and
+the `google-genai` async bug that silently eats your calls.
+
+## Examples
+
+Sample listings live in [`examples/`](examples/); regenerate the designs with your
+own key via [`examples/generate.sh`](examples/generate.sh).
 
 ## License
 

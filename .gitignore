@@ -7,3 +7,4 @@ drops/
 dist/
 build/
 *.egg-info/
+examples/out/

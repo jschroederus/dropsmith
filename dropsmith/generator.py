@@ -17,6 +17,7 @@ import httpx
 from google import genai
 from google.genai import types
 
+from .listing import parse_listing
 from .prompts import LISTING_SYSTEM, build_design_prompt, build_listing_prompt
 
 DEFAULT_IMAGE_MODEL = os.getenv("DROPSMITH_IMAGE_MODEL", "gemini-3-pro-image-preview")
@@ -66,15 +67,22 @@ async def generate_design(niche: str, *, copy: str | None = None) -> bytes:
 
 async def generate_listing(niche: str) -> dict:
     client = _client()
-    resp = await client.aio.models.generate_content(
-        model=DEFAULT_TEXT_MODEL,
-        contents=f"{LISTING_SYSTEM}\n\n{build_listing_prompt(niche)}",
-        config=types.GenerateContentConfig(temperature=0.7, max_output_tokens=2048),
-    )
-    raw = (getattr(resp, "text", "") or "").strip()
-    if raw.startswith("```"):
-        raw = raw.split("\n", 1)[1].rsplit("```", 1)[0]
-    return json.loads(raw)
+    contents = f"{LISTING_SYSTEM}\n\n{build_listing_prompt(niche)}"
+    last_error: Exception | None = None
+    # One retry: the model occasionally wraps prose around the JSON or drops a
+    # key. A second pass with a blunt reminder almost always lands it.
+    for attempt in range(2):
+        prompt = contents if attempt == 0 else f"{contents}\n\nReturn ONLY the JSON object. No prose, no code fence."
+        resp = await client.aio.models.generate_content(
+            model=DEFAULT_TEXT_MODEL,
+            contents=prompt,
+            config=types.GenerateContentConfig(temperature=0.7, max_output_tokens=2048),
+        )
+        try:
+            return parse_listing(getattr(resp, "text", "") or "")
+        except (ValueError, json.JSONDecodeError) as exc:
+            last_error = exc
+    raise RuntimeError(f"Could not parse a valid listing from the model: {last_error}")
 
 
 async def generate_drop(niche: str, *, copy: str | None = None) -> Drop:

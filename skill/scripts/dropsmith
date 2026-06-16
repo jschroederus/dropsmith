@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# OpenClaw skill entry point. Runs dropsmith in an isolated uv env — nothing is
+# installed globally on the host. Needs `uv` and GEMINI_API_KEY.
+#
+# Once dropsmith is on PyPI, replace the git URL with just "dropsmith".
+set -euo pipefail
+exec uv run --quiet \
+  --with "dropsmith @ git+https://github.com/jschroederus/dropsmith" \
+  python -m dropsmith.cli "$@"
