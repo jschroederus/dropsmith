@@ -68,6 +68,29 @@ MIT. Take what's useful.
 
 ---
 
+## LOCKED — OpenClaw-origin reply thread (post this one)
+
+Reply to his OpenClaw beta + Gemini Flash 3.1 post:
+https://x.com/steipete/status/2030508141419372667
+
+**1/**
+> Funny timing. After first trying OpenClaw in February, I had a fully working
+> generator for Geniche within 72 hours — a taste-driven product builder: agent
+> researches trending items, generates fully-editable designs, auto-lists them to
+> a marketplace. Pushing Gemini 3 Pro Image for it taught me something ↓
+
+**2/ (attach the PALM SPRINGS poster: examples/mid-century-palm-springs-gallery-wall.png)**
+> The output looked like AI slop. Spent weeks blaming the model. It was my prompt —
+> a wall of guardrails (zero-text rules, forbidden motifs, locked palettes), all
+> scar tissue from a weaker model, all making it *worse*. Deleted every layer,
+> briefed it like a designer. Then this ↓
+
+**3/**
+> Carved the prompt engine into a tiny MIT tool — niche string → finished design +
+> marketplace listing, one command. github.com/jschroederus/dropsmith
+
+---
+
 ## Reply-to-steipete drafts (philosophy, on its own merit — not a tag-beg)
 
 Post as a reply to one of his Gemini / AI-image posts. Media = the Desert Modernist
