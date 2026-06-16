@@ -48,12 +48,15 @@ def build_design_prompt(
         copy_block = f'Render this EXACT copy as the hero text, spelled correctly: "{copy}".\n'
     else:
         copy_block = (
-            'The phrase above ("{niche}") is creative DIRECTION, not text to print. Do NOT '
-            "render the brief verbatim. Invent believable, realistic finished copy that fits "
-            "the product and theme — e.g. a party invitation gets a plausible host name, date, "
-            "time, and venue; a poster gets a real-feeling headline; a card gets a natural "
-            "sentiment. Make it look like a real published product, not a prompt printed on paper.\n"
-        ).format(niche=niche)
+            f'The phrase "{niche}" is creative DIRECTION — the brief, never the text. Invent the '
+            "finished copy a real designer would actually set: specific, evocative, with a point of "
+            "view. A travel poster names the place or a real local phrase; an invitation gets a "
+            "plausible host, date, and venue; a brand kit gets an actual brand name and tagline. "
+            "Do NOT headline the piece with words that describe its own style, genre, medium, era, "
+            'or mood (never "Desert Modernist", "Mid-Century", "Vintage", "Retro", "Letterpress", '
+            '"Coastal" as the title), and avoid limp filler adjectives (majestic, premium, stunning, '
+            "elegant, timeless, beautiful). Write what belongs on the product — not a label of what it is.\n"
+        )
     return _DESIGN_BRIEF.format(
         product=product,
         niche=niche,
